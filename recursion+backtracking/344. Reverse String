@@ -1,0 +1,32 @@
+class Solution {
+    public void reverseString(char[] s) {
+        ListNode head = new ListNode(s[0]);
+        ListNode temp = head;
+        for (int i = 1; i < s.length; i++) {
+            temp.next = new ListNode(s[i]);
+            temp = temp.next;
+        }
+        ListNode prev = null;
+        ListNode curr = head;
+
+        while (curr != null) {
+            ListNode nextNode = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nextNode;
+        }
+        int i = 0;
+        while (prev != null) {
+            s[i++] = prev.val;
+            prev = prev.next;
+        }
+    }
+}
+class ListNode {
+    char val;
+    ListNode next;
+
+    ListNode(char val) {
+        this.val = val;
+    }
+}
